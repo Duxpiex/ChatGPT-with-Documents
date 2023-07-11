@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Client</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Additional Styles -->
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Lato', sans-serif;
+            color: #343a40;
+        }
+
+        .container {
+            max-width: 900px;
+        }
+
+        .card {
+            border-color: #007BFF;
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        }
+
+        .card-body {
+            height: 500px;
+        }
+
+        .btn-primary {
+            background-color: #007BFF;
+            border-color: #007BFF;
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+            border-color: #dc3545;
+        }
+
+        .list-unstyled li {
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        .list-unstyled li:nth-child(odd) {
+            color: #007BFF;
+        }
+
+        .list-unstyled li:nth-child(even) {
+            color: #6c757d;
+        }
+
+        .form-group label {
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body class="text-center">
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <div class="container py-5">
+        <input type="button" value="manage page" style="float:right;" class="btn btn-dark" onclick="window.location.href='/manage'">
+        <br><br>
+        <form action="/send_dir_upsert" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="client">category select</label>
+                <select name="client" id="client" class="form-control">
+                    <option value="type1">type1</option>
+                    <option value="type2">type2</option>
+                    <option value="type3">type3</option>
+                    <option value="type4">type4</option>
+                </select>
+            </div>
+            <input type="submit" value="set bot" class="btn btn-primary">
+        </form>
+
+        <form action="/action_page" method="post" class="mt-5">
+            <div class="form-group">
+                <label for="fname">question</label>
+                <input type="text" id="fname" name="fname" placeholder="question" class="form-control">
+            </div>
+            <input type="submit" value="start question" class="btn btn-primary">
+        </form>
+        <br>
+        {% if check_model %}
+        <p>current use model {{ check_model }} </p>
+        {% endif %}
+        <br>
+<div class="card" style="height:500px; background-color: #e6f7ff;">
+    <div class="card-body overflow-auto">
+        <ul class="list-unstyled mb-0">
+            {% for pair in dialogue %}
+                {% if pair.user %}
+                    <li class="text-left" style="margin-right: 50px;"><strong>You:<br></strong> {{ pair.user|safe }}</li>
+                {% endif %}
+                {% if pair.bot %}
+                    <li class="text-right" style="margin-left: 50px;"><strong>SGS Bot:</strong> {{ pair.bot|safe }}</li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+        <form action="/reset_session" method="post" class="mt-5">
+            <input type="submit" value="reset" class="btn btn-danger">
+        </form>
+        <br>
+    </div>
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+</html>
