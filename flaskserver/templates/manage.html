@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Manage</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Additional Styles -->
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+        }
+
+        h2 {
+            color: #007BFF;
+            margin-top: 20px;
+        }
+
+        .table-striped tbody tr:nth-of-type(odd) {
+            background-color: rgba(0,0,0,.05);
+        }
+
+        .btn-primary {
+            background-color: #007BFF;
+            border-color: #007BFF;
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+            border-color: #dc3545;
+        }
+    </style>
+</head>
+<body class="text-center">
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <br><br>
+        <h2>upload file</h2>
+    <form action="/send_upload" method="post" enctype="multipart/form-data" class="form-inline justify-content-center">
+        <div class="form-group">
+            <input type="file" name="file" class="form-control">
+        </div>
+        <div class="form-group mx-sm-3">
+            <label for="sports">category select : </label>
+            <select name="sports" id="sports" class="form-control">
+                <option value="type1">type1</option>
+                <option value="type2">type2</option>
+                <option value="type3">type3</option>
+                <option value="type4">type4</option>
+            </select>
+        </div>
+        <input type="submit" value="upload file" class="btn btn-primary">
+    </form>
+    <p>{{ upload_response }}</p>
+
+    <br>
+    <br>
+        <h2>set model</h2>
+    <form action="/select_model" method="post" enctype="multipart/form-data" class="form-inline justify-content-center">
+        <div class="form-group mx-sm-3">
+            <label for="model_category">category select : </label>
+            <select name="model_category" id="model_category" class="form-control">
+                <option value="type1">type1</option>
+                <option value="type2">type2</option>
+                <option value="type3">type3</option>
+                <option value="type4">type4</option>
+            </select>&nbsp;&nbsp;&nbsp;&nbsp;
+            <label for="model_type">model select : </label>
+            <select name="model_type" id="model_type" class="form-control">
+                <option value="text-davinci-003">text-davinci-003</option>
+                <option value="text-ada-001">text-ada-001</option>
+                <option value="gpt-3.5-turbo">gpt-3.5-turbo</option>
+            </select>
+        </div>
+        <input type="submit" value="set" class="btn btn-primary">
+    </form>
+         <br><br><h2>uploaded file list</h2>
+    <form action="/send_list" method="post" enctype="multipart/form-data" class="form-inline justify-content-center">
+        <div class="form-group mx-sm-3">
+            <label for="sports">category select : </label>
+            <select name="select" id="select" class="form-control">
+                <option value="all">all</option>
+                <option value="type1">type1</option>
+                <option value="type2">type2</option>
+                <option value="type3">type3</option>
+                <option value="type4">type4</option>
+            </select>
+        </div>
+        <input type="submit" value="search" class="btn btn-primary">
+        <br>
+    </form>
+{% if category %}
+    <br>
+    <h5>model set on {{ category }} : {{ model }}</h5>
+    <br>
+{% endif %}
+    <table class="table table-striped table-bordered text-center mx-auto" style="width: 80%;">
+        <thead>
+            <tr>
+                <th>file name</th>
+                <th>url</th>
+                <th>updated date</th>
+                <th>category</th>
+                <th>delete data</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for item in items %}
+            <tr>
+                <td>{{ item[0] }}</td>
+                <td>{{ item[1] }}</td>
+                <td>{{ item[2] }}</td>
+                <td>{{ item[3] }}</td>
+                <td>
+                    <form action="/delete_data" method="post" enctype="multipart/form-data">
+                        <input type="hidden" name="file_name" value="{{ item[0] }}">
+                        <input type="hidden" name="file_URL" value="{{ item[1] }}">
+                        <input type="hidden" name="file_date" value="{{ item[2] }}">
+                        <input type="hidden" name="file_category" value="{{ item[3] }}">
+                        <input type="submit" value="delete data" class="btn btn-danger">
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <br>
+    <br>
+     <h2>data trained by gpt</h2>
+    <form action="/get_data" method="post" enctype="multipart/form-data">
+        <input type="submit" value="search" class="btn btn-primary">
+    </form>
+<table class="table table-striped table-bordered text-center mx-auto" style="width: 80%;">
+    <thead>
+        <tr>
+            <th>document id</th>
+            <th>document name</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% if files %}
+            {% for key, value in files.items() %}
+                <tr>
+                    <td>{{ key }}</td>
+                    <td>{{ value }}</td>
+                </tr>
+            {% endfor %}
+        {% else %}
+        {% endif %}
+    </tbody>
+</table>
+
+<!-- Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+</html>
