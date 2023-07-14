@@ -19,7 +19,7 @@ The **ChatGPT-with-documents** is a tool designed to simplify the process of acc
 
 ## Development Environment
 
-The project is built using **Python version 3.11.4** and utilizes **Flask** for crafting the web application. It takes advantage of **Pinecone** and **MySQL8** for data management.
+The project is built using <code>**Python version 3.11.4**</code> and utilizes <code>**Flask**</code> for crafting the web application. It takes advantage of <code>**Pinecone**</code> and <code>**MySQL8**</code> for data management.
 
 ## Local Setup and Usage
 
@@ -28,15 +28,15 @@ Note: This setup guide is based on instructions from the [openai/chatgpt-retriev
 
 To run the program locally, follow the instructions below:
 
-1. Make sure **Python version 3.10 or higher** is installed.
-2. Clone the source files from [here](repository URL).
-3. Navigate to the cloned directory and install **Poetry** using pip.
-4. Create and activate a new **Python 3.10 virtual environment**.
-5. Install all dependencies with **Poetry**.
-6. Set the required environment variables for the datastore, Bearer Token, and OpenAI API Key.
-7. Set the environment variables for the Pinecone Vector DB.
-8. **Run the API** locally.
-9. Navigate to the **Flask server directory**, install the necessary packages, and configure MySQL settings as per server.py.
+1. Make sure <code>**Python version 3.10 or higher**</code> is installed.
+2. Clone the source files from <code>**https://github.com/Duxpiex/ChatGPT-with-documents.git**</code>.
+3. Navigate to the cloned directory and install <code>**Poetry**</code> using pip.
+4. Create and activate a new <code>**Python 3.10 virtual environment**</code>.
+5. Install all dependencies with <code>**Poetry**</code>.
+6. Set the required environment variables - <code>**DATASTORE**</code>, <code>**BEARER_TOKEN**</code>, and <code>**OPENAI_API_KEY**</code>.
+7. Set the environment variables for the Pinecone Vector DB - <code>**PINECONE_API_KEY**</code>, <code>**PINECONE_ENVIRONMENT**</code>, and <code>**PINECONE_INDEX**</code>.
+8. <code>**Run the API**</code> locally.
+9. Navigate to the <code>**Flask server directory**</code>, install the necessary packages, and configure MySQL settings as per server.py.
 10. **Run the Flask server**.
 
 ## Administrator Page Usage
