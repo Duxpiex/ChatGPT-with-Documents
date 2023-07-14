@@ -10,6 +10,10 @@ The **ChatGPT-with-documents** is a tool designed to simplify the process of acc
 - [vlqhel3440](mailto:vlqhel3440@naver.com) ✨
 - [changchangwoo](mailto:changchangwoo@naver.com) ✨
 
+**Time to Develop: 2023-06-27 to 2023-07-10**
+
+
+
 ## Key Features
 
 - **Rapid Information Retrieval:** Quickly access the information you need by efficiently searching through the documents.
